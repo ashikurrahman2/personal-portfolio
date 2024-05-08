@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    {{-- Page Title section --}}
     <title>@yield('title', 'Ashikur Rahman')</title>
 
     
@@ -45,13 +47,16 @@
     <script src="{{asset('js/main.js')}}"></script>
 </head>
 <body data-new-gr-c-s-check-loaded="14.1157.0" data-gr-ext-installed="">
+
+    {{-- Connect header section --}}
     @include('frontend.layouts.header')
 
+    {{-- Frontend body --}}
     <main class="site-content" id="content">
         @yield('content')
     </main>
   
-
+    {{-- Connect footer section --}}
     @include('frontend.layouts.footer')
     
   </body>

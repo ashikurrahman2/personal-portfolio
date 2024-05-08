@@ -13,9 +13,10 @@ use Illuminate\Http\Request;
 
 class frontendController extends Controller
 {
-    public function index(){
 
-        //$links = Link::with('facebookProfile')->get();
+    // Call function all model and file for frontend
+    public function index(){
+        
         $links= link::all();
         $mycv = allcv::all();
         $contacts= contact::all()->first();
