@@ -5,11 +5,14 @@
             <div class="page-header">
               <div class="page-block">
                   <div class="row align-items-center justify-content-between">
+                    {{-- Admin panel show title --}}
                       <div class="col-sm-auto">
                           <div class="page-header-title">
                               <h5 class="mb-0">Contact</h5>
                           </div>
                       </div>
+
+                      {{-- Sidebar section --}}
                       <div class="col-sm-auto">
                           <ul class="breadcrumb">
                               <li class="breadcrumb-item"><a
@@ -37,30 +40,40 @@
                 </button>
                 </div>
             
+                {{-- Modal Section --}}
                 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
+
+                            {{-- Modal header section --}}
                             <div class="modal-header">
                                 <h5 class="modal-title h4" id="myLargeModalLabel">Add Contact</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
+
+                            {{-- Modal body section --}}
                             <div class="modal-body">
+                                {{-- Modal form section --}}
                                 <form action="{{ route('contact.store') }}" method="post">
                                     @csrf
+
+                                    {{-- Phone field --}}
                                     <div class="form-group">
                                         <label for="phone" class="col-form-label pt-0">Phone <sup class="text-size-20 top-1">*</sup></label>
                                         <input type="number" class="form-control" id="phone" name="phone" required>
                                     </div>
+
+                                    {{-- Email Field --}}
                                     <div class="form-group mb-0">
                                         <label for="email" class="col-form-label">E-mail</label>
                                         <input type="email" class="form-control" id="email" name="email" required>
                                     </div>
-
+                                        {{-- Address field --}}
                                     <div class="form-group mb-0">
                                         <label for="address" class="col-form-label">Address</label>
                                         <textarea class="form-control" id="address" name="address"></textarea>
                                     </div>
-
+                                        {{-- Modal footer section --}}
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-primary">Save</button>
@@ -77,7 +90,11 @@
                 <div class="card">
                     <div class="card-body table-border-style">
                         <div class="table-responsive">
+
+                            {{-- Successful message --}}
                             <p class="text-success text-center">{{session('success')}}</p>
+
+                            {{-- Table field --}}
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -89,6 +106,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
+                                    {{-- Dynamic process table  --}}
                                 @foreach($contacts as $contact)
                                     <tr class="table-active">
                                         <td>{{$loop->iteration}}</td>
@@ -110,6 +129,8 @@
                                             </form>
                                         </td>
                                     </tr>
+
+                                    {{-- Edit modal section --}}
                                     <div class="modal fade" id="editcontactModal{{ $contact->id }}" tabindex="-1" role="dialog" aria-labelledby="editcontactModal{{ $contact->id }}Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">

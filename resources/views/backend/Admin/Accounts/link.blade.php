@@ -6,10 +6,13 @@
               <div class="page-block">
                   <div class="row align-items-center justify-content-between">
                       <div class="col-sm-auto">
+                        {{-- Admin panel Show header --}}
                           <div class="page-header-title">
                               <h5 class="mb-0">Account Link</h5>
                           </div>
                       </div>
+
+                      {{-- Sidebar Section --}}
                       <div class="col-sm-auto">
                           <ul class="breadcrumb">
                               <li class="breadcrumb-item"><a
@@ -36,7 +39,8 @@
                     Add Link
                 </button>
                 </div>
-            
+                
+                {{-- Modal Section --}}
                 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -45,18 +49,22 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
+                                {{-- Modal Form section --}}
                                 <form action="{{ route('links.store') }}" method="post">
                                     @csrf
+
+                                    {{-- Account name field --}}
                                     <div class="form-group">
                                         <label for="name" class="col-form-label pt-0">Account Name <sup class="text-size-20 top-1">*</sup></label>
                                         <input type="text" class="form-control" id="account_name" name="account_name" required>
-                                    </div>                                        
+                                    </div> 
+                                    {{-- Account Link field  --}}
                                     <div class="form-group">
                                         <label for="link" class="col-form-label pt-0">Account Link <sup class="text-size-20 top-1">*</sup></label>
                                         <input type="text" class="form-control" id="link" name="link" required>
                                     </div>
                                   
-                                 
+                                    {{-- Modal footer section  --}}
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-primary">Save</button>
@@ -73,7 +81,10 @@
                 <div class="card">
                     <div class="card-body table-border-style">
                         <div class="table-responsive">
+                            {{-- Successful message section --}}
                             <p class="text-success text-center">{{session('success')}}</p>
+
+                            {{-- Data Table section --}}
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -84,6 +95,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {{-- Dynamic table section --}}
                                 @foreach($links as $link)
                                     <tr class="table-active">
                                         <td>{{$loop->iteration}}</td>
@@ -91,10 +103,10 @@
                                         <td>{{ base64_decode($link->link) }}</td>
                                         <td>
 
-                        <!-- Edit button with icon -->
-            <button type="button" class="btn btn-primary btn-sm editLinkButton" data-bs-toggle="modal" data-bs-target="#editlinkModal{{ $link->id }}">
-                <i class="fas fa-edit"></i> Edit
-            </button>
+                                 <!-- Edit button with icon -->
+                                    <button type="button" class="btn btn-primary btn-sm editLinkButton" data-bs-toggle="modal" data-bs-target="#editlinkModal{{ $link->id }}">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
                                             <!-- Delete button with icon -->
                                             <form action="{{ route('links.destroy', $link->id) }}" method="POST" style="display: inline;">
                                                 @csrf
@@ -105,34 +117,41 @@
                                             </form>
                                         </td>
                                     </tr>
+
+                                    {{-- Edit Modal section --}}
                                     <div class="modal fade" id="editlinkModal{{ $link->id }}" tabindex="-1" role="dialog" aria-labelledby="editLinkModal{{ $link->id }}Label" aria-hidden="true">
                                         <div class="modal-dialog modal-lg">
                                             <div class="modal-content">
+
+                                                {{-- Modal header section --}}
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="editlinkModal{{ $link->id }}Label">Edit Link</h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                            
+
+                                                        {{-- Edit modal form section --}}
                                                     <form id="editlinkForm{{ $link->id }}" action="{{ route('links.update', $link->id) }}" method="post" enctype="multipart/form-data">
                                                         @method('PUT')
                                                         @csrf
+
+                                                        {{-- Edit Account link header --}}
                                                         <div class="form-group">
                                                             <label for="name" class="col-form-label pt-0">Account Link <sup class="text-size-20 top-1">*</sup></label>
                                                         </div> 
-
+                                                        {{-- Edit Account Name field --}}
                                                         <div class="form-group">
                                                             <label for="account_name" class="col-form-label pt-0">Account Name <sup class="text-size-20 top-1">*</sup></label>
                                                             <input type="text" class="form-control" id="account_name{{ $link->id }}" name="account_name" required value="{{ $link->account_name }}">xa
                                                         </div>
-
+                                                        {{-- Edit Account Link field --}}
                                                         <div class="form-group mb-0">
                                                             <label for="link" class="col-form-label">Account Link</label>
                                                             <input type="text" class="form-control" id="link{{ $link->id }}" name="link" required value="{{ $link->link }}">
                                                         </div>
                                                     
                                                      
-                                                      
+                                                      {{-- Edit Modal Footer section --}}
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                             <button type="submit" class="btn btn-primary">Update</button>
