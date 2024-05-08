@@ -1,3 +1,4 @@
+{{-- Start Skill Section --}}
 <section class="skills-section" id="skills-section">
     <div class="container">
         <div class="row">
@@ -13,6 +14,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="skills-widget d-flex flex-wrap justify-content-center align-items-center">
+                   
+                    {{-- Dynamic Skills section --}}
                     @foreach ($skills as $skill)
                     <div class="skill-item wow fadeInUp" data-wow-delay=".3s" style="visibility: hidden; animation-delay: 0.3s; animation-name: none;">
                         <div class="skill-inner">

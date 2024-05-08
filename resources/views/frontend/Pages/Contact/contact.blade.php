@@ -1,3 +1,4 @@
+{{-- Start Contact section --}}
 <section class="contact-section" id="contact-section">
     <div class="container">
         <div class="row">
@@ -60,6 +61,7 @@
                 </div>
             </div>
 
+            {{-- Information section --}}
             <div class="col-lg-5 offset-lg-1 col-md-5  d-flex flex-wrap align-items-center  order-1 order-md-2">
                 <div class="contact-info-list">
                     <ul class="ul-reset">
@@ -67,6 +69,8 @@
                             <div class="icon-box">
                                 <i class="flaticon-phone-call"></i>
                             </div>
+                            
+                            {{-- Phone number section --}}
                             <div class="text-box">
                                 <p>Phone</p>
                                 <a href="">{{$contacts->phone}}</a>
@@ -76,6 +80,8 @@
                             <div class="icon-box">
                                 <i class="flaticon-mail-inbox-app"></i>
                             </div>
+
+                            {{-- Email Section --}}
                             <div class="text-box">
                                 <p>Email</p>
                                 <a href="">{{base64_decode($contacts->email)}}</a>
@@ -85,6 +91,8 @@
                             <div class="icon-box">
                                 <i class="flaticon-location"></i>
                             </div>
+
+                            {{-- Address Section --}}
                             <div class="text-box">
                                 <p>Address</p>
                                 <a href="">{{$contacts->address}}</a>

@@ -18,11 +18,14 @@
                 @endif
             @endforeach
             
+            {{-- Conditional statement for find experience --}}
             @if ($foundMyExperience)
             <div class="col-md-6">
                 <div class="section-header wow fadeInUp" data-wow-delay=".3s" style="visibility: hidden; animation-delay: 0.3s; animation-name: none;">
                     <h2 class="section-title">My Experience</h2>
                 </div>
+
+                {{-- Dynamic Ressume section --}}
                 @foreach ($ressumes as $ressume)
                 @if ($ressume->name == "My Experience")
                 <div class="resume-widget">
@@ -41,11 +44,14 @@
             </div>
             @endif
             
+             {{-- Conditional statement for find education --}}
             @if ($foundMyEducation)
             <div class="col-md-6">
                 <div class="section-header wow fadeInUp" data-wow-delay=".4s" style="visibility: hidden; animation-delay: 0.4s; animation-name: none;">
                     <h2 class="section-title">My Education</h2>
                 </div>
+
+                {{-- Dynamic ressume part 2 --}}
                 @foreach ($ressumes as $ressume)
                 @if ($ressume->name == "My Education")
                 <div class="resume-widget">

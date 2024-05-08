@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 @section('title','Ashikur Rahman')
 @section('content')
-   <!-- SERVICES SECTION START -->
+   <!-- Static SERVICES SECTION START -->
 <section class="services-section" id="services-section">
     <div class="container">
         <div class="row">
@@ -19,6 +19,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="services-widget position-relative">
+
+                    {{--Dynamic Service Section --}}
                     @foreach($services as $service)
                     <div class="service-item d-flex flex-wrap align-items-center wow fadeInUp" data-wow-delay=".5s">
                         <div class="left-box d-flex flex-wrap align-items-center">
@@ -39,13 +41,13 @@
     </div>
 </section>
 <!-- SERVICES SECTION END -->
-<!-- RESUME SECTION START -->
+<!-- Connect RESUME SECTION START -->
 @include('frontend.pages.Ressume.ressume')
 <!-- RESUME SECTION END -->
-<!-- SKILLS SECTION START -->
+<!-- Connect SKILLS SECTION START -->
 @include('frontend.pages.Skills.skills')        
 <!-- SKILLS SECTION END -->
-<!-- CONTACT SECTION START -->
+<!-- Connect CONTACT SECTION START -->
 @include('frontend.pages.Contact.contact')
 <!-- CONTACT SECTION END -->
 @endsection
