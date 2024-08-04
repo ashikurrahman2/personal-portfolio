@@ -2,15 +2,11 @@
     <footer class="tj-footer-area">
         <div class="container">
             <div class="row">
-
-                {{-- Footer logo section --}}
                 <div class="col-md-12 text-center">
                     <div class="footer-logo-box">
                         <a href="">
-                            <img src="{{asset('img/sitelogo.png')}}" alt=""></a>
+                            <img src="{{ asset('img/sitelogo.png') }}" alt=""></a>
                     </div>
-
-                    {{-- Footer menu section --}}
                     <div class="footer-menu">
                         <nav>
                             <ul>
@@ -21,14 +17,13 @@
                             </ul>
                         </nav>
                     </div>
-
-                    {{-- Footer text section --}}
                     <div class="copy-text">
-                        <p>© 2024 All rights reserved by 
-                            @foreach ( $links as $link )
-                            <a href="{{ base64_decode($link->link) }}" target="_blank">{{ $link->account_name  }}</a></p>
-                            @endforeach
-                           
+                        <p>© {{ date('Y') }} All rights Reserved. Develop by
+                            @foreach ($links as $link)
+                                <a href="#" target="_blank">{{ $link->account_name }}</a>
+                        </p>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
