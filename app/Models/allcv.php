@@ -4,56 +4,59 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
-class allcv extends Model
+class Allcv extends Model
 {
     use HasFactory;
-    private static function getFileUrl($request)
-    {
-        $file = $request->file('doccument');
-        $fileName = $file->getClientOriginalName();
-        $directory = "upload/CV/";
-        $file->move($directory, $fileName);
-        $fileUrl = $directory . $fileName;
-        return $fileUrl;
-    }
-
-    private static function saveBasicInfo($allcv, $request, $fileUrl)
-    {
-        $allcv->name      = $request->name;
-        $allcv->doccument = $fileUrl;
-        $allcv->save();
-    }
+    protected $fillable = ['name', 'doccument'];
+    private static $directory = "upload/cv/";
 
     public static function newallcv($request)
     {
-        $fileUrl = $request->file('doccument') ? self::getFileUrl($request) : ' ';
+        if ($request->hasFile('doccument')) {
+            $pdfUrls = self::getPdfUrls($request->file('doccument'));
+        } else {
+            $pdfUrls = null;
+        }
 
-        $allcv = new allcv();
-        self::saveBasicInfo($allcv, $request, $fileUrl);
-
+        $allcv = new Allcv();
+        self::saveBasicInfo($allcv, $request, $pdfUrls);
     }
 
     public static function updateallcv($request, $allcv)
     {
-        if ($request->file('doccument')) {
-            if (file_exists($allcv->doccument)) {
-                unlink($allcv->doccument);
+        if ($request->hasFile('doccument')) {
+            if (Storage::exists($allcv->doccument)) {
+                Storage::delete($allcv->doccument);
             }
-            $fileUrl = self::getFileUrl($request);
+            $pdfUrls = self::getPdfUrls($request->file('doccument'));
         } else {
-            $fileUrl = $allcv->doccument;
+            $pdfUrls = $allcv->doccument;
         }
 
-        self::saveBasicInfo($allcv, $request, $fileUrl);
+        self::saveBasicInfo($allcv, $request, $pdfUrls);
+    }
+
+    private static function saveBasicInfo($allcv, $request, $pdfUrls)
+    {
+        $allcv->name = $request->name;
+        $allcv->doccument = $pdfUrls;
+        $allcv->save();
     }
 
     public static function deleteallcv($allcv)
     {
-        if (file_exists($allcv->doccument)) {
-            unlink($allcv->doccument);
+        if (Storage::exists($allcv->doccument)) {
+            Storage::delete($allcv->doccument);
         }
         $allcv->delete();
     }
 
+    private static function getPdfUrls($file)
+    {
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $filePath = $file->storeAs(self::$directory, $fileName, 'public');
+        return 'public/' . $filePath; // স্টোরেজ লিংকের রিলেটিভ পাথ
+    }
 }
