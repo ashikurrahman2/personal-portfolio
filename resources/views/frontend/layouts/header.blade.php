@@ -27,13 +27,14 @@
 
                             {{-- Banner CV button section  --}}
                            
+                          
                             @foreach($mycv as $cv)
                             <a href="{{ route('download.cv', ['id' => $cv->id]) }}" class="btn tj-btn-secondary">Download CV</a>
-                            
-                            @endforeach
+                        @endforeach
                             <ul class="ul-reset social-icons">
-    
-                                {{-- <li><a href=""><i class="fab fa-linkedin-in"></i></a></li> --}}
+                                @foreach ( $links as $link )
+                                 <li><a href="{{ base64_decode($link->link) }}"><i class="fab fa-linkedin-in"></i></a></li> 
+                                @endforeach
                                 {{-- <li><a href=""><i class="fab fa-github"></i></a></li> --}}
                             </ul>
                         </div>
