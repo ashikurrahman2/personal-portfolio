@@ -11,17 +11,15 @@ use App\Http\Controllers\Admin\Main\LinkController;
 use Illuminate\Support\Facades\Route;
 
 
-/*** For Frontend page route ***/  
-Route::get('/',[frontendController::class, 'index'])->name('home');
-
-/*** For download cv from frontend  ****/ 
- Route::get('/download-cv/{id}', [AllcvController::class, 'downloadCV'])->name('download.cv');
-
+/*** For Frontend page route ***/
+Route::get('/', [frontendController::class, 'index'])->name('home');
+/*** For download cv from frontend  ****/
+Route::get('/download-cv/{id}', [FrontendController::class, 'downloadCV'])->name('download.cv');
 /***  Middleware and backend Routing    ***/
-Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
-    Route::get('/dashboard', [DashboardController::class,'index'])->name('admin.dashboard');
-    Route::resource('services',ServiceController::class);
-    Route::resource('ressumes',RessumeController::class);
+Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::resource('services', ServiceController::class);
+    Route::resource('ressumes', RessumeController::class);
     Route::resource('skills', SkillsController::class);
     Route::resource('contact', ContactController::class);
     Route::resource('allcvs', AllcvController::class);
