@@ -1,73 +1,49 @@
 <?php
 
 namespace App\Http\Controllers\admin\main;
+
 use App\Http\Controllers\Controller;
-
-use App\Models\allcv;
+use App\Models\Allcv;
 use Illuminate\Http\Request;
-
 
 class AllcvController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        $mycv = allcv::all();
-        // Pass the services data to the view
+        $mycv = Allcv::all();
         return view('backend.Admin.CV.index', compact('mycv'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-       
-        allcv::newallcv($request);
-        return back()->with('success', 'CV info create successfully.');
+        Allcv::newallcv($request);
+        return back()->with('success', 'CV info created successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(allcv $allcv)
+    public function show(Allcv $allcv)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(allcv $allcv)
+    public function edit(Allcv $allcv)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, allcv $allcv)
+    public function update(Request $request, Allcv $allcv)
     {
-        allcv::updateallcv($request, $allcv);
-        return back()->with('success', 'CV info update successfully.');
+        Allcv::updateallcv($request, $allcv);
+        return back()->with('success', 'CV info updated successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(allcv $allcv)
+    public function destroy(Allcv $allcv)
     {
-        allcv:: deleteallcv($allcv);   
+        Allcv::deleteallcv($allcv);
         return back()->with('success', 'CV information deleted successfully.');
     }
 }
